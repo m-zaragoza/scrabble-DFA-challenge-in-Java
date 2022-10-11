@@ -1,69 +1,23 @@
 # Scrabble challenge
+## About the project
+The aim of this project is to build a program with IntelliJ, using Java. 
+</br></br>
 
-##  Approach
+## Built with
+Java.
+</br></br>
 
-To tackle the acceptance criteria, I gave Scrabble 2 private members: word(string) and totalScore(integer) with a default value of 0. 
-Then created a public constructor that takes an argument of string, which will be the value of word.
-To have access to the scores, I thought the best would be to create a HashMap that takes character and integer as key-value pairs. This HashMap is called scoring and is private. 
-I then used .put(K,V) to add each letter with its value. I did this inside a function called scoreMap(). It took me a while to understand where to call it so the hashMap would have all the values for each scrabble instance. In the end I called it in the constructor, so with each instance it gets called and sets the hashMap with all its contents. 
+## Getting started
+- To see this project, it is best to use IntelliJ.
+- Clone this project to your local machine and open it on IntelliJ.\
+\
+You can run the tests in a few different ways:
+- Right-click on the project and then select `Run all Tests`.
+- Right-click on the `ScrabbleTest` and click `Run ScrabbleTest`.
+- Open the class file `ScrabbleTest` and click the "Play" button to the left of the class declaration.
+</br></br>
 
-For score() I decided to use try-catch-finally to try and take advantage of the exception that empty string and null would throw. 
-It first tries to convert the word to upper case, using .toUpperCase(). If this works, we loop through the word and set totalScore to be the result of adding the value of each of the letters in the word. 
-I've used .get()  to retrieve the value of the letter in scoring, and charAt() to get each letter in the word.
-
-If toUpperCase() doesn't work, it throws an exception that is caught and sets totalScore to 0.
-Finally returns totalScore.
-
-For the extended criteria, through the tests I understood I would need to overload Scrabble with a second constructor that took 5 arguments. 
-I added 4 more private members: isDouble and isTriple as booleans, doubleChar and TripleChar. 
-In the second constructor I set it so isDouble would take the value of doubleWord, doubleChar of doubleLetter etc. I also implemented in the constructor the function scoreMap().
-
-I have only implemented code to pass the tests on double and triple words. I have added conditions to the loop in score(): 
-if the instance of Scrabble has a value of true assigned to isDouble, totalScore would be the result of the original operation, multiplied by 2. 
-If isTriple is true, the result would be multiplied by 3 instead. 
-The rest of the code runs as it did before. 
-
-I didn't get to add any code to pass the double and triple letter tests, although I will try to do it during upcoming self-study time to help me study Java.
-
-
-
-
-
-
-
-
-
-
-
-
-# Scrabble Challenge - this time in Java!
-
-Welcome to the Scrabble challenge!
-
-## Learning Objectives
-- Build a simple program using functions, loops, and flow control
-- Use `git` & GitHub to commit work and open a Pull Request
-
-## Instructions
-
-1. Fork this repository and then:
-```sh
-$ git clone git@github.com:digital-futures-academy/scrabble-challenge.git && cd scrabble-challenge
-```
-2. Run the tests from IntelliJ. There should be a lot of failures to begin with. You can run your test suite in a few ways:
-   1. Right-click on the project and then select `Run all Tests`
-   2. Right-click on the `ScrabbleTest` and click `Run ScrabbleTest`
-   3. Open the class file `ScrabbleTest` and click the "Play" button to the left of the class declaration
-
-Your first error when running the tests should be this:
-
-![Initial Error](images/InitialError.png)
-
-3. In GitHub, [open a Pull Request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) from your forked repository to the challenge repository.
-4. Implement the criteria below locally and [push your code](https://docs.github.com/en/github/managing-files-in-a-repository/adding-a-file-to-a-repository-using-the-command-line) to your repository! Every push to a branch that has an open Pull Request will update it automatically with your changes.
-
-# Task
-
+## Problem Statement
 Given a word, compute the scrabble score for that word.
 
 ##### Letter Values
@@ -97,7 +51,7 @@ And to total:
 = 14
 ```
 
-## Acceptance Criteria
+### Acceptance Criteria
 
 ```java
 
@@ -128,9 +82,17 @@ class ScrabbleRunner {
 }
 ```
 
-## Extended Acceptance Criteria
-> Each `Scrabble` method should be no more than 5 lines and contain no more than 5 operations.
+### Extended Acceptance Criteria
+- Each `Scrabble` method should be no more than 5 lines and contain no more than 5 operations.
+- You can play a double or a triple letter.
+- You can play a double or a triple word.
+</br></br>
 
-> You can play a double or a triple letter.
-
-> You can play a double or a triple word.
+## Review
+This was my first contact with Java so I took a lot away from it! 
+If I were to do this challenge again today, I would change a few things:
+- I would make the scoreMap() method into a static method instead, saving the program from running the block every time it's instaciated. 
+- I would make the catch block catch a NullPointerExceotion, which is the one thrown on the try when the word is an empty string or `null`.
+- I would extract the logic for double and triple word from the score() method.\
+As it is, this method is a bit convoluted with the for loop, the if-else statements and the try-catch block. By separating the double and triple word logic, I could simply multiply the total score by 2 or 3 if the word happens to be one of those cases. That would have also made it easier to complete the double or triple letter part of the criteria, which I didn't get to solve. 
+</br></br>
